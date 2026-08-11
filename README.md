@@ -17,4 +17,4 @@ The goal is to strengthen my understanding of:
 - Reusable UI patterns
 - Modern frontend development
 
-«These projects are learning exercises and are not presented as production portfolio projects.»
+> These projects are learning exercises and are not presented as production portfolio projects.
