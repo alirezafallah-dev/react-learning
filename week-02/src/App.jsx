@@ -5,15 +5,28 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [selectedProduct, setSelectedProduct] = useState(null);
-
+  const [minPrice, setMinPrice] = useState("");
+  const [maxPrice, setMaxPrice] = useState("");
   const categories = [...new Set(products.map((product) => product.category))];
 
   const filteredProducts = products.filter((product) => {
-    if (selectedCategory === "all") {
-      return true;
+    if (selectedCategory !== "all" && product.category !== selectedCategory) {
+      return false;
     }
 
-    return product.category === selectedCategory;
+    if (minPrice !== "") {
+      if (product.price < parseFloat(minPrice)) {
+        return false;
+      }
+    }
+
+    if (maxPrice !== "") {
+      if (product.price > parseFloat(maxPrice)) {
+        return false;
+      }
+    }
+
+    return true;
   });
 
   const similarProducts = selectedProduct
@@ -64,6 +77,22 @@ function App() {
             {category}
           </button>
         ))}
+
+        <div>
+          <input
+            type="number"
+            placeholder="Min Price"
+            value={minPrice}
+            onChange={(event) => setMinPrice(event.target.value)}
+          />
+
+          <input
+            type="number"
+            placeholder="Max Price"
+            value={maxPrice}
+            onChange={(event) => setMaxPrice(event.target.value)}
+          />
+        </div>
       </div>
       <p>Selected: {selectedCategory}</p>
 
