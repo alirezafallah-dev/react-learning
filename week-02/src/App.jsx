@@ -7,6 +7,9 @@ function App() {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
+  const [debouncedSearchTerm, setDebouncedSearchTerm] = useState("");
+
   const categories = [...new Set(products.map((product) => product.category))];
 
   const filteredProducts = products.filter((product) => {
@@ -22,6 +25,14 @@ function App() {
 
     if (maxPrice !== "") {
       if (product.price > parseFloat(maxPrice)) {
+        return false;
+      }
+    }
+
+    if (debouncedSearchTerm !== "") {
+      if (
+        !product.title.toLowerCase().includes(debouncedSearchTerm.toLowerCase())
+      ) {
         return false;
       }
     }
@@ -48,6 +59,16 @@ function App() {
         setLoading(false);
       });
   }, []);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDebouncedSearchTerm(searchTerm);
+    }, 1000);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [searchTerm]);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -93,6 +114,13 @@ function App() {
             onChange={(event) => setMaxPrice(event.target.value)}
           />
         </div>
+
+        <input
+          type="text"
+          placeholder="Search products..."
+          value={searchTerm}
+          onChange={(event) => setSearchTerm(event.target.value)}
+        />
       </div>
       <p>Selected: {selectedCategory}</p>
 
