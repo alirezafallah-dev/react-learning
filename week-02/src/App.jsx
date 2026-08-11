@@ -67,12 +67,21 @@ function App() {
     : [];
 
   useEffect(() => {
+    const savedProducts = localStorage.getItem("products");
+
+    if (savedProducts) {
+      setProducts(JSON.parse(savedProducts));
+      setLoading(false);
+      return;
+    }
+
     fetch("https://fakestoreapi.com/products")
       .then((response) => {
         return response.json();
       })
       .then((data) => {
         setProducts(data);
+        localStorage.setItem("products", JSON.stringify(data));
         setLoading(false);
       });
   }, []);
