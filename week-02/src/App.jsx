@@ -13,6 +13,22 @@ function App() {
 
   const categories = [...new Set(products.map((product) => product.category))];
 
+  const [cart, setCart] = useState([]);
+  const addToCart = (product) => {
+    setCart((prevCart) => [...prevCart, product]);
+  };
+  const removeFromCart = (productId) => {
+    setCart((prevCart) => {
+      const index = prevCart.findIndex((product) => product.id === productId);
+
+      if (index === -1) {
+        return prevCart;
+      }
+
+      return prevCart.filter((_, i) => i !== index);
+    });
+  };
+
   const filteredProducts = products.filter((product) => {
     if (selectedCategory !== "all" && product.category !== selectedCategory) {
       return false;
@@ -161,12 +177,36 @@ function App() {
 
       <p>Selected: {selectedCategory}</p>
 
+      <div>
+        <h2>Cart ({cart.length})</h2>
+
+        <ul>
+          {cart.map((product, index) => (
+            <li key={`${product.id}-${index}`}>
+              <h3>{product.title}</h3>
+              <p>${product.price.toFixed(2)}</p>
+
+              <button onClick={() => removeFromCart(product.id)}>Remove</button>
+            </li>
+          ))}
+        </ul>
+      </div>
+
       <ul>
         {sortedProducts.map((product) => (
           <li key={product.id} onClick={() => setSelectedProduct(product)}>
             <h2>{product.title}</h2>
             <p>{product.description}</p>
             <p>${product.price.toFixed(2)}</p>
+
+            <button
+              onClick={(event) => {
+                event.stopPropagation();
+                addToCart(product);
+              }}
+            >
+              Add to Cart
+            </button>
           </li>
         ))}
       </ul>
