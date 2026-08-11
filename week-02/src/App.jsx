@@ -9,6 +9,7 @@ function App() {
   const [maxPrice, setMaxPrice] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
   const [debouncedSearchTerm, setDebouncedSearchTerm] = useState("");
+  const [sortOption, setSortOption] = useState("default");
 
   const categories = [...new Set(products.map((product) => product.category))];
 
@@ -38,6 +39,22 @@ function App() {
     }
 
     return true;
+  });
+
+  const sortedProducts = [...filteredProducts].sort((a, b) => {
+    if (sortOption === "price-asc") {
+      return a.price - b.price;
+    }
+
+    if (sortOption === "price-desc") {
+      return b.price - a.price;
+    }
+
+    if (sortOption === "name-asc") {
+      return a.title.localeCompare(b.title);
+    }
+
+    return 0;
   });
 
   const similarProducts = selectedProduct
@@ -121,11 +138,22 @@ function App() {
           value={searchTerm}
           onChange={(event) => setSearchTerm(event.target.value)}
         />
+
+        <select
+          value={sortOption}
+          onChange={(event) => setSortOption(event.target.value)}
+        >
+          <option value="default">Default</option>
+          <option value="price-asc">Price: Low → High</option>
+          <option value="price-desc">Price: High → Low</option>
+          <option value="name-asc">Name: A → Z</option>
+        </select>
       </div>
+
       <p>Selected: {selectedCategory}</p>
 
       <ul>
-        {filteredProducts.map((product) => (
+        {sortedProducts.map((product) => (
           <li key={product.id} onClick={() => setSelectedProduct(product)}>
             <h2>{product.title}</h2>
             <p>{product.description}</p>
