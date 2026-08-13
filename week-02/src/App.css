@@ -1,5 +1,5 @@
 /* =========================
-   ROOT
+  ROOT
 ========================= */
 :root {
   --color-bg: #f8fafc;
@@ -49,7 +49,7 @@
 }
 
 /* =========================
-   RESET
+  RESET
 ========================= */
 * {
   box-sizing: border-box;
@@ -76,7 +76,7 @@ button {
 }
 
 /* =========================
-   APP
+  APP
 ========================= */
 .app {
   min-height: 100vh;
@@ -88,7 +88,7 @@ button {
 }
 
 /* =========================
-   HERO
+  HERO
 ========================= */
 .hero {
   padding: 30px 0;
@@ -126,7 +126,7 @@ button {
 }
 
 /* =========================
-   MAIN CONTENT
+  MAIN CONTENT
 ========================= */
 .main-content {
   padding-top: 50px;
@@ -134,7 +134,7 @@ button {
 }
 
 /* =========================
-   SECTION HEADER
+  SECTION HEADER
 ========================= */
 .section-header {
   display: flex;
@@ -168,7 +168,7 @@ button {
 }
 
 /* =========================
-   FILTERS
+  FILTERS
 ========================= */
 .filters-section {
   padding: 30px;
@@ -180,7 +180,7 @@ button {
 }
 
 /* =========================
-   CATEGORY BUTTONS
+  CATEGORY BUTTONS
 ========================= */
 .category-list {
   display: flex;
@@ -212,7 +212,7 @@ button {
 }
 
 /* =========================
-   FILTER GRID
+  FILTER GRID
 ========================= */
 .filter-grid {
   display: grid;
@@ -267,7 +267,33 @@ button {
 }
 
 /* =========================
-   PRODUCTS
+  Filter Reset
+========================= */
+.reset-filters-btn {
+  align-self: end;
+  min-height: 46px;
+  padding: 0 18px;
+  border: 1px solid var(--color-primary);
+  border-radius: 10px;
+  background: var(--color-white);
+  color: var(--color-section);
+  font-size: var(--font-size-md);
+  font-weight: 600;
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.reset-filters-btn:hover {
+  border-color: var(--color-primary);
+  background: var(--color-primary);
+  color: var(--color-white);
+  transform: translateY(-1px);
+}
+/* =========================
+  PRODUCTS
 ========================= */
 .products-section {
   margin-bottom: 80px;
@@ -343,7 +369,7 @@ button {
 }
 
 /* =========================
-   ADD TO CART
+  ADD TO CART
 ========================= */
 .add-btn {
   padding: 10px 15px;
@@ -366,7 +392,7 @@ button {
 }
 
 /* =========================
-   EMPTY STATE
+  EMPTY STATE
 ========================= */
 .empty-state {
   padding: 55px 30px;
@@ -387,7 +413,7 @@ button {
 }
 
 /* =========================
-   FLOATING CART
+  FLOATING CART
 ========================= */
 .cart-toggle {
   position: fixed;
@@ -429,7 +455,7 @@ button {
 }
 
 /* =========================
-   CART OVERLAY
+  CART OVERLAY
 ========================= */
 .cart-overlay {
   position: fixed;
@@ -440,7 +466,7 @@ button {
 }
 
 /* =========================
-   CART PANEL
+  CART PANEL
 ========================= */
 .cart-panel {
   position: fixed;
@@ -462,7 +488,7 @@ button {
 }
 
 /* =========================
-   CART PANEL HEADER
+  CART PANEL HEADER
 ========================= */
 .cart-panel-header {
   display: flex;
@@ -500,7 +526,7 @@ button {
 }
 
 /* =========================
-   CART PANEL CONTENT
+  CART PANEL CONTENT
 ========================= */
 .cart-panel-content {
   flex: 1;
@@ -509,7 +535,7 @@ button {
 }
 
 /* =========================
-   CART LIST
+  CART LIST
 ========================= */
 .cart-list {
   display: flex;
@@ -545,7 +571,7 @@ button {
 }
 
 /* =========================
-   REMOVE BUTTON
+  REMOVE BUTTON
 ========================= */
 .remove-btn {
   flex-shrink: 0;
@@ -567,7 +593,7 @@ button {
 }
 
 /* =========================
-   SIMILAR PRODUCTS
+  SIMILAR PRODUCTS
 ========================= */
 .similar-section {
   margin-bottom: 50px;
@@ -613,7 +639,7 @@ button {
 }
 
 /* =========================
-   RESPONSIVE — TABLET
+  RESPONSIVE — TABLET
 ========================= */
 @media (max-width: 950px) {
   .products-grid {
@@ -631,7 +657,7 @@ button {
 }
 
 /* =========================
-   RESPONSIVE — MOBILE
+  RESPONSIVE — MOBILE
 ========================= */
 @media (max-width: 650px) {
   .container {
@@ -697,10 +723,13 @@ button {
   .remove-btn {
     width: 100%;
   }
+  .reset-filters-btn {
+    width: 100%;
+  }
 }
 
 /* =========================
-   RESPONSIVE — SMALL MOBILE
+  RESPONSIVE — SMALL MOBILE
 ========================= */
 @media (max-width: 420px) {
   .price-fields {

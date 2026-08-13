@@ -18,6 +18,16 @@ function App() {
 
   const [cartOpen, setCartOpen] = useState(false);
 
+  const resetFilters = () => {
+    setSelectedCategory("all");
+    setSelectedProduct(null);
+    setMinPrice("");
+    setMaxPrice("");
+    setSearchTerm("");
+    setDebouncedSearchTerm("");
+    setSortOption("default");
+  };
+
   // =========================
   // Cart
   // =========================
@@ -404,6 +414,10 @@ function App() {
                 <option value="name-asc">Name: A → Z</option>
               </select>
             </div>
+
+            <button className="reset-filters-btn" onClick={resetFilters}>
+              Reset Filters
+            </button>
           </div>
         </section>
 
